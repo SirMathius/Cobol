@@ -53,3 +53,12 @@
            05 WS-TIT-1             PIC X(23)
                                    VALUE "EMPLEADOS DE LA EMPRESA".
            05 FILLER               PIC X(29)     VALUE SPACES.
+                                                                                                                          I
+       LINKAGE SECTION.
+       01  LK-FECHA.
+           05 FILLER               PIC X(02).
+           05 LK-DIA               PIC 9(02).
+           05 LK-MES               PIC 9(02).
+           05 LK-ANIO              PIC 9(04).
+
+       PROCEDURE DIVISION USING LK-FECHA.
