@@ -44,4 +44,12 @@
               10 WS-DEPTO-EMP      PIC 9(03).
               10 WS-PUESTO-EMP     PIC 9(02).
               10 WS-SALARIO-EMP    PIC 9(07)V99.
-           05 WS-LEIDOS-EMP        PIC 9(05)  VALUE ZEROS.
+           05 WS-LEIDOS-EMP        PIC 9(05)     VALUE ZEROS.
+           05 WS-IMPRESOS          PIC 9(05)     VALUE ZEROS.
+           05 WS-TOTAL-SALARIOS    PIC 9(09)V99  VALUE ZEROS.
+
+       01  WS-TITULO-1.
+           05 FILLER               PIC X(28)     VALUE SPACES.
+           05 WS-TIT-1             PIC X(23)
+                                   VALUE "EMPLEADOS DE LA EMPRESA".
+           05 FILLER               PIC X(29)     VALUE SPACES.
