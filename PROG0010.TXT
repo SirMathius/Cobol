@@ -54,7 +54,7 @@
            05 FILLER              PIC X(29)    VALUE SPACES.
 
        01  WS-DETALLE.
-           05 FILLER              PIC X(15)    VALUE SPACES.                                                            I
+           05 FILLER              PIC X(15)    VALUE SPACES.
            05 WS-DET-TODO         PIC X(50).
            05 FILLER              PIC X(15)    VALUE SPACES.
 
@@ -79,3 +79,23 @@
            05 LK-ANIO             PIC 9(04).
 
        PROCEDURE DIVISION USING LK-FECHA.
+       010-INICIO.
+           OPEN INPUT  EMPLEADOS
+                OUTOUT REPORTE
+           WRITE REG-REPORTE FROM WS-TITULO-1.
+       020-LEE.
+           READ EMPLEADOS INTO WS-REG-EMPLEADOS AT END
+                GO TO 100-FIN.
+           ADD 1 TO WS-LEIDOS-EMP
+           MOVE WS-REG-EMPLEADOS TO WS-DET-TODO
+           WRITE REG-REPORTE FROM WS-DETALLE
+           ADD 1 TO WS-IMPRESOS
+           GO TO 020-LEE.
+       100-FIN.
+           MOVE WS-LEIDOS-EMP TO WS-TOT-LEIDOS
+           WRITE REG-REPORTE FROM WS-DETALLE-LEIDOS
+           MOVE WS-IMPRESOS   TO WS-TOT-IMPRESOS
+           WRITE REG-REPORTE FROM WS-DETALLE-IMPRESOS
+           CLOSE EMPLEADOS
+                 REPORTE
+           GOBACK.
