@@ -10,9 +10,9 @@
       *           LA EMPRESA                                           *
       * -------------------------------------------------------------- *
 
-       ENVIRONMENT DIVISION.
+              ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
-       SOURSE-COMPUTER.           IBM-3083.
+       SOURCE-COMPUTER.           IBM-3083.
        OBJECT-COMPUTER.           IBM-3083.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
@@ -22,18 +22,18 @@
        DATA DIVISION.
        FILE SECTION.
        FD  EMPLEADOS
-           LABELS RECORDS ARE STANDARS
+           LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 50 CHARACTERS
            BLOCK CONTAINS 0 RECORDS
-           DATA RECORDS IS REG-EMPLEADOS.
-       01  REG-EMPLEADOS          PIC X(50)
+           DATA RECORD IS REG-EMPLEADOS.
+       01  REG-EMPLEADOS          PIC X(50).
 
        FD  REPORTE
-           LABELS RECORDS ARE STANDARS
+           LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 50 CHARACTERS
            BLOCK CONTAINS 0 RECORDS
-           DATA RECORDS IS REG-REPORTE.
-       01  REG-REPORTE            PIC X(50)
+           DATA RECORD IS REG-REPORTE.
+       01  REG-REPORTE            PIC X(50).
 
        WORKING-STORAGE SECTION.
        01  WS-AREAS A USAR.
