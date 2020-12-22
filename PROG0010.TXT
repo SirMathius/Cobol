@@ -10,7 +10,7 @@
       *           LA EMPRESA                                           *
       * -------------------------------------------------------------- *
 
-              ENVIRONMENT DIVISION.
+       ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
        SOURCE-COMPUTER.           IBM-3083.
        OBJECT-COMPUTER.           IBM-3083.
@@ -36,7 +36,7 @@
        01  REG-REPORTE            PIC X(50).
 
        WORKING-STORAGE SECTION.
-       01  WS-AREAS A USAR.
+       01  WS-AREAS-A-USAR.
            05 WS-REG-EMPLEADOS.
               10 WS-NUMERO-EMP    PIC 9(05).
               10 WS-NOMBRE-EMP    PIC X(30).
@@ -59,13 +59,13 @@
            05 FILLER              PIC X(15)    VALUE SPACES.
 
        01  WS-DETALLE-LEIDOS.
-           05 FILLER              PIC X(01)
+           05 FILLER              PIC X(01).
            05 FILLER              PIC X(29)
                                   VALUE "TOTAL DE EMPLEADOS LEIDOS  : ".
            05 WS-TOT-LEIDOS       PIC 9(05).
            05 FILLER              PIC X(45)    VALUE SPACES.
-       01  WS-DETALLE-IMPRESOS REDEFINES WS-DETALLE-LEIDOS.
-           05 FILLER              PIC X(01)
+       01  WS-DETALLE-IMPRESOS.
+           05 FILLER              PIC X(01).
            05 FILLER              PIC X(29)
                                   VALUE "TOTAL DE EMPLEADOS IMPRESOS: ".
            05 WS-TOT-IMPRESOS     PIC 9(05).
@@ -78,10 +78,10 @@
            05 LK-MES              PIC 9(02).
            05 LK-ANIO             PIC 9(04).
 
-       PROCEDURE DIVISION USING LK-FECHA.
+       PROCEDURE DIVISION.
        010-INICIO.
            OPEN INPUT  EMPLEADOS
-                OUTOUT REPORTE
+                OUTPUT REPORTE
            WRITE REG-REPORTE FROM WS-TITULO-1.
        020-LEE.
            READ EMPLEADOS INTO WS-REG-EMPLEADOS AT END
