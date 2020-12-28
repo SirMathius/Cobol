@@ -1,10 +1,10 @@
        IDENTIFICATION DIVISION.
        PROGRAM-ID.                PROG0010.
-      * AUTHOR.                    FERNANDO TOLEDO.
-      * INSTALLATION.              CENTRO DE CAPACITACION.
-      * DATE-WRITTEN.              17/11/16.
-      * DATE-COMPILED.
-      * SECURITY.                  NO ES CONFIDENCIAL.
+       AUTHOR.                    FERNANDO TOLEDO.
+       INSTALLATION.              CENTRO DE CAPACITACION.
+       DATE-WRITTEN.              17/11/16.
+       DATE-COMPILED.
+       SECURITY.                  NO ES CONFIDENCIAL.
       *> ------------------------------------------------------
       *> PROGRAMA QUE EMITE UN REPORTE SIN ESTAR ESTRUCTURADO
       *> ------------------------------------------------------
@@ -16,25 +16,23 @@
 
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
-           SELECT EMPLEADOS ASSIGN TO 
-	   "C:\DEV\CapasitacionCobol\Cobol\Resources\EMPLEADO.txt".
-           SELECT REPORTE   ASSIGN TO 
-	   "C:\DEV\CapasitacionCobol\Cobol\Resources\REPORTE.txt".
+           SELECT EMPLEADOS ASSIGN TO UT-S-EMPLEADO.
+           SELECT REPORTE   ASSIGN TO UT-S-REPORTE.
 
        DATA DIVISION.
        FILE SECTION.
        FD  EMPLEADOS
-      *     LABEL RECORDS ARE STANDARD
+           LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 50 CHARACTERS
-           BLOCK CONTAINS 0 RECORDS.
-      *     DATA RECORD IS REG-EMPLEADOS.
+           BLOCK CONTAINS 0 RECORDS
+           DATA RECORD IS REG-EMPLEADOS.
        01  REG-EMPLEADOS          PIC X(50).
 
        FD  REPORTE
-      *     LABEL RECORDS ARE STANDARD
+           LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 80 CHARACTERS
-           BLOCK CONTAINS 0 RECORDS.
-      *     DATA RECORD IS REG-REPORTE.
+           BLOCK CONTAINS 0 RECORDS
+           DATA RECORD IS REG-REPORTE.
        01  REG-REPORTE            PIC X(80).
 
        WORKING-STORAGE SECTION.
@@ -122,30 +120,30 @@
        01  WS-DETALLE-SALARIOS.
            05 FILLER              PIC X(01).
            05 FILLER              PIC X(29)
-                                  VALUE "SUMA TOTAL DE SALARIOS     : ".
+                                  VALUE "SUMA TOTAL DE SALARIOS    : ".
            05 WS-DET-SALARIO2     PIC $$$,$$$,$$9.99.
            05 FILLER              PIC X(36)    VALUE SPACES.
 
-      * LINKAGE SECTION.
+       LINKAGE SECTION.
        01  LK-FECHA.
            05 FILLER              PIC X(02).
-           05 LK-DIA              PIC 9(02) VALUE 22.
-           05 LK-MES              PIC 9(02) VALUE 10.
-           05 LK-ANIO             PIC 9(04) VALUE 2017.
+           05 LK-DIA              PIC 9(02).
+           05 LK-MES              PIC 9(02).
+           05 LK-ANIO             PIC 9(04).
 
        PROCEDURE DIVISION.
        010-INICIO.
            OPEN INPUT  EMPLEADOS
                 OUTPUT REPORTE
-           WRITE REG-REPORTE FROM WS-TITULO-1 AFTER ADVANCING PAGE
+           WRITE REG-REPORTE FROM WS-TITULO-1
            MOVE LK-DIA  TO WS-TIT-2-DIA
            MOVE LK-MES  TO WS-TIT-2-MES
            MOVE LK-ANIO TO WS-TIT-2-ANIO
            MOVE 1       TO WS-TIT-2-PAGINA
-           WRITE REG-REPORTE FROM WS-TITULO-2 AFTER ADVANCING 1
-           WRITE REG-REPORTE FROM WS-GUIONES AFTER ADVANCING 1
-           WRITE REG-REPORTE FROM WS-SUB-TITULO-1 AFTER ADVANCING 1
-           WRITE REG-REPORTE FROM WS-GUIONES AFTER ADVANCING 1.
+           WRITE REG-REPORTE FROM WS-TITULO-2
+           WRITE REG-REPORTE FROM WS-GUIONES
+           WRITE REG-REPORTE FROM WS-SUB-TITULO-1
+           WRITE REG-REPORTE FROM WS-GUIONES.
        020-LEE.
            READ EMPLEADOS INTO WS-REG-EMPLEADOS AT END
                 GO TO 100-FIN.
@@ -158,18 +156,18 @@
            MOVE WS-DEPTO-EMP      TO WS-DET-DEPTO
            MOVE WS-PUESTO-EMP     TO WS-DET-PUESTO
            MOVE WS-SALARIO-EMP    TO WS-DET-SALARIO
-           WRITE REG-REPORTE FROM WS-DETALLE AFTER ADVANCING 1
+           WRITE REG-REPORTE FROM WS-DETALLE
 
            ADD 1 TO WS-IMPRESOS
            GO TO 020-LEE.
 
        100-FIN.
            MOVE WS-LEIDOS-EMP     TO WS-TOT-LEIDOS
-           WRITE REG-REPORTE FROM WS-DETALLE-LEIDOS AFTER ADVANCING 2
+           WRITE REG-REPORTE FROM WS-DETALLE-LEIDOS
            MOVE WS-IMPRESOS       TO WS-TOT-IMPRESOS
-           WRITE REG-REPORTE FROM WS-DETALLE-IMPRESOS AFTER ADVANCING 1
+           WRITE REG-REPORTE FROM WS-DETALLE-IMPRESOS
            MOVE WS-TOT-SALARIOS   TO WS-DET-SALARIO2
-           WRITE REG-REPORTE FROM WS-DETALLE-SALARIOS AFTER ADVANCING 1
+           WRITE REG-REPORTE FROM WS-DETALLE-SALARIOS
            CLOSE EMPLEADOS
                  REPORTE
            GOBACK.

@@ -1,20 +1,14 @@
+                           CENTRO DE CAPACITACION                               
+ FECHA: 22/10/2017         EMPLEADOS DE LA EMPRESA                 PAGINA:   1  
+ ------------------------------------------------------------------------------ 
+    NUMERO            NOMBRE               STATUS  DEPTO PUESTO    SALARIO      
+ ------------------------------------------------------------------------------ 
+      100    FERNANDOTOLEDO ESPEJEL            8    200    30      32,000.50    
+      200    JOSE MARIA MEDINA                 5    100    10      28,000.60    
+      300    ROBERTO PEREZ GARCIA              8    020    50      56,000.70    
+      400    VENUSTIANO ESTRADA MENDEZ         7    620    70      21,000.00    
+      500    VALENTIN JIMENEZ OJEDA            8    100    10      19,000.80    
 
-                           CENTRO DE CAPACITACION
- FECHA: 28/11/2016         EMPLEADOS DE LA EMPRESA                 PAGINA:   1
- ------------------------------------------------------------------------------
-    NUMERO            NOMBRE               STATUS  DEPTO PUESTO    SALARIO
- ------------------------------------------------------------------------------
-      192    JUAN PEREZ Y PEREZ                8    103    18      32,000.50
-      227    ROBERTO MEDINA GUTIERREZ          8    104    21      12,500.00
-      429    JOSE DE JESUS MEDINA NARES        3    105    67      15,600.32
-      571    ADALBERTO MACIAS BELTRAN          8    495    14      45,700.00
-                                      .
-                                      .
-                                      .
-
- TOTAL DE EMPLEADOS LEIDOS  :  1,200
-
- TOTAL DE EMPLEADOS IMPRESOS:  1,200
-
- SUMA TOTAL DE SALARIOS     :  $2,105,800.50
-
+ TOTAL DE EMPLEADOS LEIDOS  :      5                                            
+ TOTAL DE EMPLEADOS IMPRESOS:      5                                            
+ SUMA TOTAL DE SALARIOS     :    $156,002.60                                    
