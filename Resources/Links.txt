@@ -1,5 +1,5 @@
--sorftware editor: http://www.spflite.com/
+- sorftware editor: http://www.spflite.com/
 
--palabras reservadas: https://www.ibm.com/support/knowledgecenter/es/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html
+- palabras reservadas: https://www.ibm.com/support/knowledgecenter/es/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html
 
--copilador y editor COBOL: https://www.tutorialspoint.com/compile_cobol_online.php
+- copilador y editor COBOL: https://www.tutorialspoint.com/compile_cobol_online.php
