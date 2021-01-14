@@ -16,10 +16,10 @@
 
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
-           SELECT EMPLEADOS ASSIGN TO 
-	   "C:\DEV\CapasitacionCobol\Cobol\Resources\EMPLEADO.txt".
-           SELECT REPORTE   ASSIGN TO 
-	   "C:\DEV\CapasitacionCobol\Cobol\Resources\REPORTE.txt".
+           SELECT EMPLEADOS ASSIGN TO
+       "C:\DEV\CapasitacionCobol\Cobol\Resources\EMPLEADO.txt".
+           SELECT REPORTE   ASSIGN TO
+       "C:\DEV\CapasitacionCobol\Cobol\Resources\REPORTE.txt".
 
        DATA DIVISION.
        FILE SECTION.
@@ -49,6 +49,7 @@
            05 WS-LEIDOS-EMP       PIC 9(05)    VALUE ZEROS.
            05 WS-IMPRESOS         PIC 9(05)    VALUE ZEROS.
            05 WS-TOT-SALARIOS     PIC 9(09)V99 VALUE ZEROS.
+           05 WS-FIN              PIC X(03)    VALUE SPACES.
 
        01  WS-TITULO-1.
            05 FILLER              PIC X(27)    VALUE SPACES.
@@ -135,8 +136,20 @@
 
        PROCEDURE DIVISION.
        010-INICIO.
+           PERFORM 020-ABRE-ARCHIVOS THRU 020-FIN
+           PERFORM 030-TITULOS       THRU 030-FIN
+           PERFORM 040-LEE           THRU 040-FIN
+           PERFORM 040-PROCESO       THRU 040-FIN
+                   UNTIL SW-FIN EQUAL "FIN"
+           PERFORM 050-FINAL         THRU 050-FIN
+           GOBACK.
+
+       020-ABRE-ARCHIVOS.
            OPEN INPUT  EMPLEADOS
-                OUTPUT REPORTE
+                OUTPUT REPORTE.
+       020-FIN.  EXIT.
+
+       030-TITULOS.
            WRITE REG-REPORTE FROM WS-TITULO-1 AFTER ADVANCING PAGE
            MOVE LK-DIA  TO WS-TIT-2-DIA
            MOVE LK-MES  TO WS-TIT-2-MES
@@ -146,9 +159,10 @@
            WRITE REG-REPORTE FROM WS-GUIONES AFTER ADVANCING 1
            WRITE REG-REPORTE FROM WS-SUB-TITULO-1 AFTER ADVANCING 1
            WRITE REG-REPORTE FROM WS-GUIONES AFTER ADVANCING 1.
-       020-LEE.
-           READ EMPLEADOS INTO WS-REG-EMPLEADOS AT END
-                GO TO 100-FIN.
+       030-FIN.  EXIT.
+
+
+       040-PROCESO.
            ADD 1                  TO WS-LEIDOS-EMP
            ADD WS-SALARIO-EMP     TO WS-TOT-SALARIOS
 
@@ -160,10 +174,13 @@
            MOVE WS-SALARIO-EMP    TO WS-DET-SALARIO
            WRITE REG-REPORTE FROM WS-DETALLE AFTER ADVANCING 1
 
-           ADD 1 TO WS-IMPRESOS
-           GO TO 020-LEE.
+           ADD 1 TO WS-IMPRESOS.
+       040-LEE.
+           READ EMPLEADOS INTO WS-REG-EMPLEADOS AT END
+                MOVE "FIN" TO SW-FIN.
+       040-FIN.  EXIT.
 
-       100-FIN.
+       050-FINAL.
            MOVE WS-LEIDOS-EMP     TO WS-TOT-LEIDOS
            WRITE REG-REPORTE FROM WS-DETALLE-LEIDOS AFTER ADVANCING 2
            MOVE WS-IMPRESOS       TO WS-TOT-IMPRESOS
@@ -171,5 +188,5 @@
            MOVE WS-TOT-SALARIOS   TO WS-DET-SALARIO2
            WRITE REG-REPORTE FROM WS-DETALLE-SALARIOS AFTER ADVANCING 1
            CLOSE EMPLEADOS
-                 REPORTE
-           GOBACK.
+                 REPORTE.
+       O5O-FIN.  EXIT.
