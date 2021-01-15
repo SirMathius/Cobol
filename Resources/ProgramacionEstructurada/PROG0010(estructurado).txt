@@ -1,4 +1,4 @@
-       IDENTIFICATION DIVISION.
+            IDENTIFICATION DIVISION.
        PROGRAM-ID.                PROG0010.
       * AUTHOR.                    FERNANDO TOLEDO.
       * INSTALLATION.              CENTRO DE CAPACITACION.
@@ -140,7 +140,7 @@
            PERFORM 030-TITULOS       THRU 030-FIN
            PERFORM 040-LEE           THRU 040-FIN
            PERFORM 040-PROCESO       THRU 040-FIN
-                   UNTIL SW-FIN EQUAL "FIN"
+                   UNTIL WS-FIN EQUAL "FIN"
            PERFORM 050-FINAL         THRU 050-FIN
            GOBACK.
 
@@ -177,7 +177,7 @@
            ADD 1 TO WS-IMPRESOS.
        040-LEE.
            READ EMPLEADOS INTO WS-REG-EMPLEADOS AT END
-                MOVE "FIN" TO SW-FIN.
+                MOVE "FIN" TO WS-FIN.
        040-FIN.  EXIT.
 
        050-FINAL.
@@ -189,4 +189,4 @@
            WRITE REG-REPORTE FROM WS-DETALLE-SALARIOS AFTER ADVANCING 1
            CLOSE EMPLEADOS
                  REPORTE.
-       O5O-FIN.  EXIT.
+       050-FIN.  EXIT.
